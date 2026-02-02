@@ -16,13 +16,14 @@ namespace TodoAPI.Controllers
         private readonly TodoContext _context;
 
         public TodoItemsController(TodoContext context)
+       if (_context.TodoItems.Count() == 0)
         {
-            _context = context;
-            if (_context.TodoItems.Count() == 0)
-            {
-                _context.TodoItems.Add(new TodoItem { Name="Lab1", IsComplete=true});
-                _context.TodoItems.Add(new TodoItem { Name="Lab2",IsComplete=false});
-            }
+            _context.TodoItems.Add(new TodoItem { Name = "Lab1", IsComplete = true });
+            _context.TodoItems.Add(new TodoItem { Name = "Lab2", IsComplete = false });
+            _context.TodoItems.Add(new TodoItem { Name = "quiz#2", IsComplete = false });
+        }
+        
+        _context.SaveChanges();
 
             _context.SaveChanges();
         }
